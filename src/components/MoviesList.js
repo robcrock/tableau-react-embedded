@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Movie } from './Movie'
+import { Filter } from './Filter'
 
 const movies = [
   { name: "36th Chamber"},
@@ -10,15 +12,13 @@ export function MoviesList() {
   
   const [filter, setFilter] = useState("");
 
+  useEffect(() => {
+    console.log('Hit effect')
+  }, [filter])
+
   return (
     <div>
-      <label>
-        Filter:
-        <input 
-          onChange={ (e) => setFilter(e.target.value) }
-          value={ filter }
-        ></input>
-      </label>
+      <Filter filter={ filter } setFilter={ setFilter } />
       <ul>
         {/* This create the array of lis we want to render */}
         { movies
@@ -29,7 +29,7 @@ export function MoviesList() {
           )
           .map((movie, i) => { 
             return (
-              <li key={i}>{ movie.name }</li>
+              <Movie key={ movie.name } movie={ movie } />
             )}
           )
         }

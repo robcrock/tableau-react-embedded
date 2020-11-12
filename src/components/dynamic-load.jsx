@@ -26,6 +26,7 @@ function DynamicLoad() {
     let vizURL = dashboards[vizCount];
     const options = {
       hideTabs: true,
+      hideToolbar: true,
       width: "500px",
       height: "300px"
     };
@@ -57,9 +58,12 @@ const checkmaxValue = (value, max) => {
 };
 
 const setVizStyle = {
-  margin: "25px",
-  width: "500px",
-  height: "300px"
+  height: "100%",
+  width: "100%",
+  margin: "20px",
+  display: "flex",
+  "justify-content": "center",
+  "align-items": "center",
 };
 
 export default DynamicLoad;

@@ -1,21 +1,12 @@
-import './App.css';
-import { Counter } from './components/Counter'
-import { Accordion } from './components/Accordion'
-import { Input } from './components/Input'
-import { MoviesList } from './components/MoviesList'
+import "./App.css";
 
 // Load components
-import TableauEmbed from './components/TableauEmbed'
+import DynamicLoad from "./components/dynamic-load";
 
 function App() {
   return (
     <div className="App">
-      <h1>Embedded Analytics with Tableau</h1>
-      <Input />
-      <Counter />
-      <Accordion />
-      <MoviesList />
-      <TableauEmbed />
+      <DynamicLoad />
     </div>
   );
 }

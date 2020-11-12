@@ -1,14 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 export function Filter({ filter, setFilter }) {
-  return(
+  return (
     <label>
       Filter:
-      <input 
-        onChange={ (e) => setFilter(e.target.value) }
-        value={ filter }
-      ></input>
+      <input onChange={(e) => setFilter(e.target.value)} value={filter}></input>
     </label>
   );
 }
@@ -16,4 +13,4 @@ export function Filter({ filter, setFilter }) {
 Filter.propTypes = {
   filter: PropTypes.string.isRequired,
   setFilter: PropTypes.func.isRequired,
-}
+};

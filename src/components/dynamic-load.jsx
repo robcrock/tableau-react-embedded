@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const dashboards = [
   "https://public.tableau.com/views/SocialMediaKPIs_16051099238290/kpi1",
@@ -18,21 +18,22 @@ const dashboards = [
 const { tableau } = window;
 
 function DynamicLoad() {
-  const [vizList] = useState(dashboards);
   const [vizCount, setVizCount] = useState(0);
   const [viz, setViz] = useState(null);
+  const ref = useRef(null)
 
   const initViz = () => {
-    let vizDiv = document.getElementById("vizContainer");
-    let vizURL = vizList[vizCount];
+    let vizURL = dashboards[vizCount];
     const options = {
-      hideTabs: true
+      hideTabs: true,
+      width: "500px",
+      height: "300px"
     };
     if (viz) {
       viz.dispose();
       setViz(null);
     }
-    setViz(new tableau.Viz(vizDiv, vizURL, options));
+    setViz(new tableau.Viz(ref.current, vizURL, options));
   };
 
   useEffect(initViz, [vizCount]);
@@ -40,9 +41,9 @@ function DynamicLoad() {
   return (
     <div>
       <h1>Dynamic Load</h1>
-      <div style={setVizStyle} id="vizContainer" />
+      <div style={setVizStyle} ref={ ref } />
       <button onClick={() => setVizCount(checkminValue(vizCount))}>Previous</button>
-      <button onClick={() => setVizCount(checkmaxValue(vizCount, vizList.length))}>Next</button>
+      <button onClick={() => setVizCount(checkmaxValue(vizCount, dashboards.length))}>Next</button>
     </div>
   );
 }
@@ -57,8 +58,8 @@ const checkmaxValue = (value, max) => {
 
 const setVizStyle = {
   margin: "25px",
-  width: "800px",
-  height: "600px"
+  width: "500px",
+  height: "300px"
 };
 
 export default DynamicLoad;
